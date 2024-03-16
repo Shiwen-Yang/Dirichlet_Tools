@@ -27,7 +27,7 @@ class Dirichlet_MLE:
         mome = E * (E*(1 - E)/V - 1)
         return(mome)
     
-    def PDF(self, alpha, log_likelihood = False):
+    def likelihood(self, alpha, log_likelihood = False):
         alpha.to(device)
 
         alphap = alpha - 1

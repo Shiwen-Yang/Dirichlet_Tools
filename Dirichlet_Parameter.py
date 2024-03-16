@@ -13,7 +13,7 @@ import torch.nn.functional as F
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 #Given observations a Dirichlet random variable, estimate the parameter alpha using MOME and MLE
-class MLE:
+class Estimate:
     def __init__(self, observation, tol = 10e-5):
         self.observation = observation
         self.tolerance = tol

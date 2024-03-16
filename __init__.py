@@ -1,1 +1,1 @@
-from Dirichlet_Est import MLE
+from Dirichlet_Parameter import Estimate

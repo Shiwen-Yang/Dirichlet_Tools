@@ -1,1 +1,1 @@
-from Dirichlet_MLE import Dirichlet_MLE
+from MLE import Dirichlet_MLE

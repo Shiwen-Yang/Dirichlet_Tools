@@ -15,11 +15,11 @@ device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cp
 #Given observations a Dirichlet random variable, estimate the parameter alpha using MOME and MLE
 class Estimate:
     def __init__(self, observation, tol = 10e-5):
-
-        #Observations are the i.i.d. samples of a Dirichlet random variable
+        
+        #observation: (n, p) shape array
+        #observation are the i.i.d. samples of a Dirichlet random variable
         #tolerance is the stopping criterion for the gradient descent method
         #MOME is the method of moment estimator for Dirichlet random variables
-        #MOME is also used as an initialization for MLE
         #MLE is the maximum likelihood estimator
 
         self.observation = observation
@@ -91,6 +91,7 @@ class Estimate:
     def MLE(self):
 
         #Given observations, compute the maximum likelihood estimator using newton gradient descent
+        #The gradient descent is initialized on the computed MOME
         
         empirical_avg_log = torch.log(self.observation).mean(dim = 0)
 

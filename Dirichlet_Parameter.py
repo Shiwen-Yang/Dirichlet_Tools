@@ -7,7 +7,7 @@ device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cp
 #Given observations a Dirichlet random variable, estimate the parameter alpha using MOME and MLE
 class Estimate:
     """
-    To estimate the parameter of a Dirichlet  random variable using MLE
+    To estimate the parameter of a Dirichlet random variable using MLE
 
     Args:
         observation (torch.Tensor): Tensor of shape (n, p) containing i.i.d. samples of a Dirichlet random variable.
@@ -70,8 +70,9 @@ class Estimate:
             return(torch.log(likelihood).sum())
         else:
             return(likelihood.sum())
-        
-    def mean_log(self, alpha):
+    
+    @staticmethod
+    def mean_log(alpha):
 
         """  
         Expectation of the log(Dir(alpha)) distribution
@@ -80,14 +81,15 @@ class Estimate:
             alpha(torch.Tensor): a component-wise positive vector
 
         Returns:
-            torch.Tensor: the expected value of the log(Dir(alpha)) distribution
+            torch.Tensor of length p: the expected value of the log(Dir(alpha)) distribution
         """
 
         mean_of_log = (torch.digamma(alpha) - torch.digamma(alpha.sum()))
 
         return(mean_of_log)
     
-    def var_log(self, alpha, inverse = False):
+    @staticmethod
+    def var_log(alpha, inverse = False):
 
         """  
         Variance matrix of the log(Dir(alpha)) distribution
